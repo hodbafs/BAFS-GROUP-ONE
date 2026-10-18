@@ -13,10 +13,6 @@
       "backgroundColor": "#111d2b",
       "showSpinner": false
     },
-    "StatusBar": {
-      "style": "DARK",
-      "backgroundColor": "#111d2b"
-    },
     "PushNotifications": {
       "presentationOptions": ["badge", "sound", "alert"]
     }

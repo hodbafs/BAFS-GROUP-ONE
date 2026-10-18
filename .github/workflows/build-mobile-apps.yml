@@ -87,17 +87,14 @@ jobs:
             -project App.xcodeproj \
             -destination 'generic/platform=iOS Simulator' \
             -configuration Debug \
+            -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO \
             build
 
-      - name: Compress iOS Build Output
-        run: |
-          tar -czvf BAFS-GROUP-ONE-iOS-Build.tar.gz -C ios/App/build . || echo "Skipping tar if custom derivedDataPath is used"
-
-      - name: Upload iOS Build Artifact
+      - name: Upload iOS App (.app bundle)
         uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: BAFS-GROUP-ONE-iOS-Artifacts
-          path: ios/App/
+          name: BAFS-GROUP-ONE-iOS-Simulator-App
+          path: ios/App/build/Build/Products/Debug-iphonesimulator/App.app
           retention-days: 14
