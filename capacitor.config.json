@@ -7,12 +7,6 @@
     "androidScheme": "https"
   },
   "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 2000,
-      "launchAutoHide": true,
-      "backgroundColor": "#111d2b",
-      "showSpinner": false
-    },
     "PushNotifications": {
       "presentationOptions": ["badge", "sound", "alert"]
     }
