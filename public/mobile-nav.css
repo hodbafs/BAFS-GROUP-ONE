@@ -1,0 +1,154 @@
+/* =========================================================
+   BAFS GROUP ONE — Mobile Safe Area & Bottom Navigation
+   ========================================================= */
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --bafs-navy: #0d1821;
+  --bafs-dark: #111d2b;
+  --bafs-teal: #4fb9a3;
+  --bafs-teal-glow: rgba(79, 185, 163, 0.25);
+  --bafs-border: rgba(255, 255, 255, 0.08);
+}
+
+/* Safe area padding for native iOS / Android */
+body.one-v4 {
+  padding-top: var(--safe-top);
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Ensure inputs and selectable text can still be selected */
+input, textarea, [contenteditable="true"] {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* On mobile & native viewports, add bottom padding so navigation does not obscure content */
+@media (max-width: 900px) {
+  .shell {
+    padding-bottom: calc(72px + var(--safe-bottom)) !important;
+  }
+
+  /* Make header aware of notch */
+  .shell header {
+    padding-top: calc(12px + var(--safe-top));
+  }
+}
+
+/* Mobile Bottom Navigation Bar */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(64px + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: rgba(17, 29, 43, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--bafs-border);
+  z-index: 1000;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+@media (max-width: 900px) {
+  body:not(.auth-mode-active) .mobile-bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+/* When viewing full-screen game arena, hide bottom navigation */
+dialog#arena[open] ~ .mobile-bottom-nav,
+body.arena-active .mobile-bottom-nav {
+  transform: translateY(100%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.mobile-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.2s ease, transform 0.15s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.mobile-nav-item:active {
+  transform: scale(0.92);
+}
+
+.mobile-nav-item .nav-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mobile-nav-item .nav-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.2s ease;
+}
+
+.mobile-nav-item.active {
+  color: var(--bafs-teal);
+  font-weight: 600;
+}
+
+.mobile-nav-item.active .nav-icon {
+  transform: translateY(-2px);
+}
+
+.mobile-nav-item.active .nav-icon svg {
+  stroke: var(--bafs-teal);
+  filter: drop-shadow(0 2px 8px var(--bafs-teal-glow));
+}
+
+.mobile-nav-item .nav-badge {
+  position: absolute;
+  top: -2px;
+  right: -6px;
+  background: #ff5c7c;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 2px 6px rgba(255, 92, 124, 0.4);
+}

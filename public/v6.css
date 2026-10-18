@@ -1,0 +1,50 @@
+/* V6 stability layer: keep meaningful entrance/feedback motion, but remove
+   cursor-following light and cursor-driven card movement. */
+.one-v5 .care-scene::before {
+  animation: none;
+  transform: none;
+}
+
+.one-v4 .journey-hero:hover,
+.one-v4 .chapter-tile:hover,
+.one-v4 .daily-spotlight:hover,
+.one-v4 .community-door:hover,
+.one-v4 .v4-auth:hover {
+  transform: none;
+}
+
+/* GitHub header lock: Firebase may provide identity data, but must not repaint
+   the dark navigation bar or create a white account block. */
+.one-v4.one-v5 header {
+  position: absolute;
+  right: 4%;
+  top: 0;
+  width: auto;
+  height: 76px;
+  min-height: 76px;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  justify-content: flex-end;
+}
+
+.one-v4.one-v5 header .tool,
+.one-v4.one-v5 header .my-chip,
+.one-v4.one-v5 header .my-chip small {
+  color: #e2eaf2;
+}
+
+.one-v4.one-v5 header .my-chip {
+  background: transparent;
+}
+
+.one-v4.one-v5 .form-field select {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid #c8d6df;
+  border-radius: 10px;
+  background: #fff;
+  color: #173149;
+  padding: 12px 14px;
+  font: inherit;
+}

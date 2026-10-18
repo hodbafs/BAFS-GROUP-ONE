@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BAFS GROUP ONE</string>
+    <string name="title_activity_main">BAFS GROUP ONE</string>
+    <string name="package_name">com.bafs.groupone</string>
+    <string name="custom_url_scheme">com.bafs.groupone</string>
+</resources>
